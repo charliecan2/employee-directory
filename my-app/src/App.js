@@ -1,9 +1,14 @@
 import './App.css';
 import Header from './components/Header'
+import EmployeeTables from './components/EmployeeTables'
 
 function App() {
   return (
-    <Header />
+    <div>
+      <Header />
+      <EmployeeTables />
+    </div>
+    
   );
 }
 
