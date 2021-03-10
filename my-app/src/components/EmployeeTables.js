@@ -1,11 +1,17 @@
 import React from 'react';
-import API from '../utils/API';
 import Employee from '../components/Employee'
 
 class EmployeeTables extends React.Component{
     render(){
         return (
-            <table className="table table-striped">
+            <div className="container">
+                <br />
+                <br />
+                <div className="input-group mb-3">
+                    <input type="text" className="form-control" placeholder="Search" />
+                </div>
+                <br />
+                <table className="table table-striped">
                 <thead>
                     <tr>
                     <th scope="col">Image</th>
@@ -28,8 +34,12 @@ class EmployeeTables extends React.Component{
                     <Employee />
                     <Employee />
                     <Employee />
+                    <Employee />
+                    <Employee />
+                    <Employee />
                 </tbody>
             </table>
+            </div>
         )
     }
 }

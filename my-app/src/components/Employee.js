@@ -18,7 +18,6 @@ class Employee extends React.Component {
     loadEmployee = () => {
         API.getEmployee()
         .then(res => {
-            // console.log(res.data)
             this.setState({
                 picture: res.data.results[0].picture.large, 
                 firstName: res.data.results[0].name.first,
@@ -38,10 +37,11 @@ class Employee extends React.Component {
             <tr>
             <td><img src={this.state.picture} alt="employee-pic"/></td>
             <td>{this.state.firstName} {this.state.lastName}</td>
-            <td>{this.state.email}</td>
+            <td><a href={`mailto:${this.state.email}`} type="mail">{this.state.email}</a></td>
             <td>{this.state.phone}</td>
-            <td>{this.state.dob}</td>
+            <td>{this.state.dob.slice(0, 10)}</td>
             </tr>
+            
         )
     }
 }
