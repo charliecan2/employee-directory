@@ -8,10 +8,89 @@ import API from '../src/utils/API';
 function App() {
 
   const [employees, setEmployees] = useState([]);
+  const [filter, setFilter] = useState("");
+
+  const sortByFirstNameAsc = event => {
+    event.preventDefault();
+
+    let sortedEmployees = [...employees].sort((a, b)=> {
+      let fa = a.name.first;
+      let fb = b.name.first;
+
+      if (fa < fb){
+        return -1;
+      }
+      if (fa > fb){
+        return 1;
+      }
+      return 0;
+    })
+    setEmployees(sortedEmployees);
+  }
+
+  const sortByFirstNameDesc = event => {
+    event.preventDefault();
+
+    let sortedEmployees = [...employees].sort((a, b)=> {
+      let fa = a.name.first;
+      let fb = b.name.first;
+
+      if (fa > fb){
+        return -1;
+      }
+      if (fa < fb){
+        return 1;
+      }
+      return 0;
+    })
+    setEmployees(sortedEmployees);
+  }
+
+  const sortByLastNameAsc = event => {
+    event.preventDefault();
+
+    let sortedEmployees = [...employees].sort((a, b)=> {
+      let fa = a.name.last;
+      let fb = b.name.last;
+
+      if (fa < fb){
+        return -1;
+      }
+      if (fa > fb){
+        return 1;
+      }
+      return 0;
+    })
+    setEmployees(sortedEmployees);
+  }
+
+  const sortByLastNameDesc = event => {
+    event.preventDefault();
+
+    let sortedEmployees = [...employees].sort((a, b)=> {
+      let fa = a.name.last;
+      let fb = b.name.last;
+
+      if (fa < fb){
+        return -1;
+      }
+      if (fa > fb){
+        return 1;
+      }
+      return 0;
+    })
+    setEmployees(sortedEmployees);
+  }
+
+  const handleInputChange = event => {
+    setFilter(event.target.value)
+    console.log(filter);
+  }
 
   useEffect(() => {
     API.getEmployee()
     .then(res => {
+      console.log(res.data.results)
       setEmployees(res.data.results)
     })
     .catch(err => console.log(err))
@@ -20,19 +99,33 @@ function App() {
   return (
     <div>
       <Header />
-      <EmployeeTables>
-        {employees.map(result => {
+      <EmployeeTables 
+      sortFirstAsc={sortByFirstNameAsc}
+      sortLastAsc={sortByLastNameAsc}
+      handleInputChange={handleInputChange}
+      >
+        {employees.filter((result) => {
+          if (filter.trim() == ""){
+            return result
+          }
+          if (
+          result.name.first.toLowerCase().includes(filter.trim().toLowerCase())
+          ||
+          result.name.last.toLowerCase().includes(filter.trim().toLowerCase())
+          ){
+            return result 
+          }
+        }).map(result => {
           return(
-          <Employee 
-            picture={result.picture.large}
-            firstname={result.name.first}
-            lastname={result.name.last}
-            email={result.email}
-            phone={result.phone}
-            dob={result.dob.date.slice(0, 10)}
-          />
-          );
-        })}
+            <Employee 
+              picture={result.picture.large}
+              firstname={result.name.first}
+              lastname={result.name.last}
+              email={result.email}
+              phone={result.phone}
+              dob={result.dob.date.slice(0, 10)}
+            />
+          )})}
       </EmployeeTables>
     </div>
     
