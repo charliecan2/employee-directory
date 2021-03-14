@@ -104,11 +104,9 @@ function App() {
       sortLastAsc={sortByLastNameAsc}
       handleInputChange={handleInputChange}
       >
-        {employees.filter((result) => {
-          if (filter.trim() === ""){
-            return result
-          }
-          if (
+        {employees.filter(result => {
+          if (filter.trim() === "") return result
+          else if (
           result.name.first.toLowerCase().includes(filter.trim().toLowerCase())
           ||
           result.name.last.toLowerCase().includes(filter.trim().toLowerCase())

@@ -9,7 +9,7 @@ function SearchForm (props){
                 onChange={props.handleInputChange}
                 type="text"
                 className="form-control"
-                placeholder="Type in employee info to begin search"
+                placeholder="Type employee's first or last name to search for them"
                 id="term"
                 />
             </div>
