@@ -8,7 +8,7 @@ function EmployeeTables(props) {
             <br />
             <SearchForm handleInputChange={props.handleInputChange}/>
             <br />
-            <table className="table table-striped">
+            <table className="table table-striped table-responsive">
             <thead>
                 <tr>
                 <th scope="col">Image</th>
