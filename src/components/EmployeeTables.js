@@ -16,7 +16,7 @@ function EmployeeTables(props) {
                 <th scope="col"><a href="#" onClick={props.sortLastAsc}>Last Name</a></th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th scope="col">DOB</th>
+                <th scope="col">DOB (yyyy/mm/dd)</th>
                 </tr>
             </thead>
             <tbody>

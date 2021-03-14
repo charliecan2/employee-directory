@@ -121,7 +121,7 @@ function App() {
               lastname={result.name.last}
               email={result.email}
               phone={result.phone}
-              dob={result.dob.date.slice(0, 10)}
+              dob={result.dob.date.slice(0, 10).replace("-", "/").replace("-", "/")}
             />
           )})}
       </EmployeeTables>
