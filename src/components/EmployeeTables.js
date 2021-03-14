@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchForm from '../components/SearchForm';
+import SearchForm from './SearchForm';
 
 function EmployeeTables(props) {
     return (

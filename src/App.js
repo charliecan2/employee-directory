@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header'
 import EmployeeTables from './components/EmployeeTables'
 import Employee from './components/Employee';
-import API from '../src/utils/API';
+import API from './utils/API';
 
 function App() {
 
