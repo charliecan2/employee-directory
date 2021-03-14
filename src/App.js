@@ -105,7 +105,7 @@ function App() {
       handleInputChange={handleInputChange}
       >
         {employees.filter((result) => {
-          if (filter.trim() == ""){
+          if (filter.trim() === ""){
             return result
           }
           if (
