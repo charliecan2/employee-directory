@@ -9,6 +9,8 @@ function App() {
 
   const [employees, setEmployees] = useState([]);
   const [filter, setFilter] = useState("");
+  const [firstNameClicked, setFirstClicked] = useState();
+  const [lastNameClicked, setLastClicked] = useState();
 
   const sortByFirstNameAsc = event => {
     event.preventDefault();
@@ -26,6 +28,8 @@ function App() {
       return 0;
     })
     setEmployees(sortedEmployees);
+    setFirstClicked(true);
+    console.log(firstNameClicked)
   }
 
   const sortByFirstNameDesc = event => {
@@ -44,53 +48,57 @@ function App() {
       return 0;
     })
     setEmployees(sortedEmployees);
+    setFirstClicked(false);
+    console.log(firstNameClicked);
   }
 
   const sortByLastNameAsc = event => {
     event.preventDefault();
 
     let sortedEmployees = [...employees].sort((a, b)=> {
-      let fa = a.name.last;
-      let fb = b.name.last;
+      let la = a.name.last;
+      let lb = b.name.last;
 
-      if (fa < fb){
+      if (la < lb){
         return -1;
       }
-      if (fa > fb){
+      if (la > lb){
         return 1;
       }
       return 0;
     })
     setEmployees(sortedEmployees);
+    setLastClicked(true);
+    console.log(lastNameClicked);
   }
 
   const sortByLastNameDesc = event => {
     event.preventDefault();
 
     let sortedEmployees = [...employees].sort((a, b)=> {
-      let fa = a.name.last;
-      let fb = b.name.last;
+      let la = a.name.last;
+      let lb = b.name.last;
 
-      if (fa < fb){
+      if (la > lb){
         return -1;
       }
-      if (fa > fb){
+      if (la < lb){
         return 1;
       }
       return 0;
     })
     setEmployees(sortedEmployees);
+    setLastClicked(false);
+    console.log(lastNameClicked);
   }
 
   const handleInputChange = event => {
     setFilter(event.target.value)
-    console.log(filter);
   }
 
   useEffect(() => {
     API.getEmployee()
     .then(res => {
-      console.log(res.data.results)
       setEmployees(res.data.results)
     })
     .catch(err => console.log(err))
@@ -99,9 +107,13 @@ function App() {
   return (
     <div>
       <Header />
-      <EmployeeTables 
+      <EmployeeTables
+      firstNameClicked={firstNameClicked} 
+      lastNameClicked={lastNameClicked}
       sortFirstAsc={sortByFirstNameAsc}
+      sortFirstDesc={sortByFirstNameDesc}
       sortLastAsc={sortByLastNameAsc}
+      sortLastDesc={sortByLastNameDesc}
       handleInputChange={handleInputChange}
       >
         {employees.filter(result => {
